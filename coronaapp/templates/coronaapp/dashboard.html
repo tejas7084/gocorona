@@ -1,0 +1,132 @@
+{% extends 'coronaapp/main.html'%}
+{% load static %}
+
+{% block title %}
+  Covid-19 Dashboard
+{% endblock title %}
+
+{% block content%}
+
+<div class="container-fluid padding ">
+    <div class="row headings text-center">
+        <div  class=" border-0 col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 headers text-center">
+            <h2 class="india">Covid-19 Pandemic</h2>
+            <hr>
+            <h4 class="india2">India</h4>
+        </div>
+        <div class="border-0 col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 headers text-center">
+            <h3 class="btn btn-sm btn-info">Total cases</h3>
+            <h4 class="text-info ">{{ total_confirmed_cases }}</h4>
+        </div>
+        <div class="border-0 col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 headers text-center">
+            <h3 class="btn btn-sm btn-warning">Active cases</h3>
+            <h4 class="text-warning">{{total_active_cases}}</h4>
+        </div>
+        <div class="border-0 col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 headers text-center">
+            <h3 class="btn btn-sm btn-success">Total recovered</h3>
+            <h4 class="text-success">{{total_recovered_cases}}</h4>
+        </div>
+        <div class="border-0 col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 headers text-center">
+            <h3 class="btn btn-sm btn-danger" disabled>Deceased</h3>
+            <h4 class="text-danger">{{total_deaths_cases}}</h4>
+        </div>
+    </div>
+
+</div>
+<hr class="my-4" color="#ffffff">
+<!--scatter map of india-->
+
+<div class="container-fluid" >
+    <div class="row">
+
+            <div class="  col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 headers text-center">
+                            <h3 class="border-bottom border-light">INDIA COVID-19 Status</h3>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 map">{{plot|safe}}</div>
+                            <p style="font-size:15px;" class="lead">The data for the map is updated every 3hr so that you can get up-to-date info.</p>
+
+
+                    </div>
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 headers text-center">
+                            <h3 class="border-bottom border-info">COVID-19 State wise status</h3>
+                    </div>
+                    <div class="container-fluid  ">
+
+                        <form class="form-inline my-2 my-lg-0 ">
+                          <input class="form-control mx-sm-3" id="mySearch" onkeyup="mySearchFunc()" type="search" placeholder="Search by state" aria-label="Search">
+                          <!-- <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button> -->
+                            <small id="passwordHelpInline" class="form-text text-muted" style="color: #F8F9FA;">
+                              search state/region
+                            </small>
+                        </form>
+
+                    </div>
+                    <hr class="my-4" color="#ffffff">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 card card-body" >
+                            <div class="table-responsive-xs table-responsive-sm table-responsive-md table-responsive-lg">
+                                <table id="myTable" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 table  table-sm">
+
+                                        <tr>
+                                            <th class="text-white" >State</th>
+                                            <th class="text-white">Total cases</th>
+                                            <th class="text-white">Active cases</th>
+                                            <th class="text-white">Recovered cases</th>
+                                            <th class="text-white">Deceased</th>
+                                        </tr>
+
+                                    {% for state,confirmed,active,recovered,deaths in table %}
+                                        <tr class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+                                                <td class=" state text-light text-center " >{{state}}</td>
+                                                <td class="text-info text-center">{{confirmed}}</td>
+                                                <td class="text-warning text-center"> {{active}}</td>
+                                                <td class="text-success text-center"> {{recovered}}</td>
+                                                <td class="text-danger text-center">{{deaths}}</td>
+                                        </tr>
+
+                                    {% endfor %}
+
+
+                                </table>
+                            </div>
+
+                     </div>
+            </div>
+    </div>
+</div>
+<hr class="my-4" color="#ffffff">
+
+<!--line chart of covid cases in india-->
+
+<div class="container-fluid padding">
+    <div class="row padding">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+            <div class="col-lg-12 headers text-center">
+                <h3 class="border-bottom border-primary">INDIA COVID-19 CASES FROM JAN 2020</h3>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 map ">{{line_chart|safe}}</div>
+            <p style="font-size:15px;" class="text-white lead">The data for the charts is updated daily.</p>
+
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="col-lg-12 headers text-center">
+                <h3 class="border-bottom border-info text-info">DAILY COMFIRMED COVID-19 CASES</h3>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 map">{{daily_cases_chart|safe}}</div>
+
+            <div class="col-lg-12 headers text-center">
+                <h3 class="border-bottom border-danger text-danger">DAILY COMFIRMED COVID-19 DEATHS</h3>
+            </div>
+            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 map">{{daily_deaths_chart|safe}}</div>
+        </div>
+
+
+    </div>
+</div>
+
+
+{% endblock%}

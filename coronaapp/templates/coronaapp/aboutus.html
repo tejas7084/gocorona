@@ -1,0 +1,98 @@
+{% extends 'coronaapp/main.html'%}
+{% load static %}
+
+{% block title %}
+  About Us
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid padding">
+    <div class="container text-center">
+        <div class="jumbotron ">
+          <div class="container">
+            <h1 style="font-size:20px;">About the site</h1>
+            <p class="lead">This site is created by two geeks shown below and this site is dedicated to all the people that are fighting against the COVID-19.<br>
+                            To make everyone understand the data through the means of various <i style="color:#1486C4" class="fa fa-database" aria-hidden="true"></i> data visualization tools is the aim of the our site and we are working to improve this user experiance day-by-day.<br>
+                            We would <i style="color:#e31b23;" class="fa fa-heart" aria-hidden="true"></i> if anyone want to contribute to the site by any means possible.Reach out to us by the info provided down below.</p>
+          </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+
+.column {
+  text-align: center;
+  width: 50%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  margin: 8px;
+  background-color: #E9ECEF;
+}
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 50%;
+    display: block;
+  }
+}
+</style>
+
+
+<div class="container-fluid padding col-md-7">
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <img style="height:100%;width:100%;" class="card-img-top" src="{% static 'images/my.jpg'%}">
+          <div class="container">
+            <h2 style="margin-top: 12px; font-size: 24px;"><b>Rutvik Tak</b></h2>
+            <p><b>Just an amateur trying to explore my limits and have fun with life.</b></p>
+            <a style="margin-top: 15px;" href="https://www.instagram.com/rutviktak/" target="_blank"> <button style="margin-bottom:5px; font-size: 14px;background: radial-gradient(circle at 0% 107%, #fd5949 45%,#d6249f 70%) !important;height: 30px;padding: 0 12px;white-space: nowrap;" class="btn btn-primary border border-white insta btn-md" ><i class="fab fa-instagram"></i> @rutviktak</button></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column">
+        <div class="card">
+          <img src="{% static 'images/tejas.jpeg' %}" alt="John" style="width:100%">
+          <div class="container">
+            <h2 style="margin-top: 12px; font-size: 25px;"><b>Tejas Pachpile</b></h2>
+            <p><b>Learning Until DEATH Comes. Never Stop Learning</b></p>
+            <a href="https://www.instagram.com/i_am_tejaspachpile/" target="_blank"> <button style="margin-bottom:5px; font-size: 14px;background: radial-gradient(circle at 0% 107%, #fd5949 45%,#d6249f 70%) !important;height: 30px;padding: 0 12px;white-space: nowrap;" class="btn btn-primary border border-white insta btn-md" ><i class="fab fa-instagram"></i> @tejasjp</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<!--  -->
+<div class="container-fluid padding">
+    <div class="container text-center">
+        <div style="background:#000000" class="jumbotron text-white ">
+          <div class="container">
+            <h1 style="font-size:25px;"><i class="fa fa-link" aria-hidden="true"></i>Sources</h1>
+              <a class="text-white" href="https://en.wikipedia.org/wiki/Template:COVID-19_pandemic_data#cite_note-JHU_ticker-6" target="_blank"><p class="lead">en.wikipedia.org</p></a>
+              <a class="text-white" href="https://datahub.io/core/covid-19#resource-worldwide-aggregated" target="_blank" ><p class="lead">datahub.io</p></a>
+              <a class="text-white" href="https://www.mygov.in/covid-19" target="_blank"><p class="lead" >mygov.in</p></a>
+              <a class="text-white" href="https://ourworldindata.org/coronavirus/country/india" target="_blank"><p class="lead">ourworldindata.org</p></a>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock%}

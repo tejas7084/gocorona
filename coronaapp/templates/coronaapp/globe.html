@@ -1,0 +1,75 @@
+{% extends 'coronaapp/main.html'%}
+{% load static%}
+
+{% block title %}
+  Globe
+{% endblock title %}
+
+{% block content %}
+
+
+
+<!--  -->
+
+<!--  -->
+
+<div class="container-fluid text-center" >
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 map">{{ plot|safe }}</div>
+    <p style="font-size:15px;" class="text-white lead">The data for the map is updated every 3hr so that you can get up-to-date info.</p>
+
+</div>
+
+<div class="container-fluid ">
+
+        <form class="form-inline my-2 my-lg-0 ml-auto">
+          <input id="mySearch" onkeyup="mySearchFunc()" class="form-control mr-sm-2" type="search" placeholder="Search by territory" aria-label="Search">
+          <!-- <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button> -->
+            <small id="passwordHelpInline" class="form-text text-muted" style="color: #F8F9FA;">
+                search country/region
+            </small>
+        </form>
+
+</div>
+
+<hr class="my-4" color="#ffffff">
+
+<!--  -->
+<div class="container-fluid">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 card card-body" >
+                            <div class="table-responsive-xs table-responsive-sm table-responsive-md table-responsive-lg">
+                                <table id="myTable" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 table  table-sm">
+                                    <tr >
+                                        <th class="text-white text-center" >Country</th>
+                                        <th class="text-white text-center">Total cases</th>
+                                        <th class="text-white text-center">Recovered cases</th>
+                                        <th class="text-white text-center">Deceased</th>
+                                    </tr>
+
+                                    {% for country,confirmed,deaths,recovered in table %}
+                                        <tr class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+                                                <td class=" country text-light text-center" >{{country}}
+
+                                                </td>
+                                                <td class="text-info text-center">{{confirmed}}
+
+                                                </td>
+                                                <td class="text-success text-center"> {{recovered}}
+
+                                                </td>
+                                                <td class="text-danger text-center">{{deaths}}
+
+                                                </td>
+
+                                        </tr>
+                                    {% endfor %}
+
+                                </table>
+                            </div>
+    </div>
+</div>
+
+
+
+{% endblock%}
